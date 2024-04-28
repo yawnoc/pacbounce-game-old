@@ -1,0 +1,67 @@
+# Global Game Settings
+
+
+## Graphics
+
+Start in full-screen mode: false
+Scaling: Keep aspect ratio
+Interpolate colors between pixels: false
+Color outside the room region: #000000 (RGB 0, 0, 0)
+Allow the player to resize the game window: false
+Let the game window always stay on top: false
+Don't draw a border in windowed mode: false
+Don't show the buttons in the window caption: false
+Display the cursor: true
+Freeze the game when the form loses focus: false
+Disable screensavers and power saving actions: true
+
+
+## Resolution
+
+Set the resolution of the screen: false
+Use synchronization to avoid tearing: false
+
+
+## Other
+
+Let <Esc> end the game: false
+Treat the close button as <Esc> key: true
+Let <F1> show the game information: false
+Let <F4> switch between screen modes: false
+Let <F5> save the game and <F6> load a game: false
+Let <F9> take a screenshot of the game: false
+Game Process Priority: Normal
+Major: 1
+Minor: 0
+Release: 0
+Build: 0
+Company: 
+Product: 
+Copyright: 
+Description: 
+
+
+## Loading
+
+Show your own image while loading: false
+Make image partially transparent: false
+Make translucent with alpha value: 255
+Default loading progress bar
+Scale progress bar image: true
+Game Icon: Game Maker 8 green cog
+Game Identifier: 221474688
+
+
+## Errors
+
+Display error messages: true
+Write error messages to file game_errors.log: false
+Abort on all error messages: false
+Treat uninitialized variables as value 0: false
+
+
+## Info
+
+Author: 
+Version: 100
+Last changed: 28/04/2024 5:57:10 PM
