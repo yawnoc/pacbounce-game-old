@@ -1,0 +1,7 @@
+Information about font: fScore
+
+Font: Arial
+Size: 12
+Bold: false
+Italic: false
+Character Range: 32 till 127 (Normal)
