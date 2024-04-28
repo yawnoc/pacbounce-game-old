@@ -1,0 +1,2 @@
+//xCollide(oObject)
+return collision_line(x-lengthdir_x(1,direction),y-lengthdir_y(1,direction),x,y,argument,1,1);
