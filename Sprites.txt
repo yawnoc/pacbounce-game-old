@@ -1,0 +1,5 @@
+# Sprite origin:
+
+All sprites have their origin at the centre of the image,
+except for `sPlayer2`, `sPlayer3`, `sPlayer4`, `sControls`, and `sSign`,
+which have their origin at the top-left corner.
