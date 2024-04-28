@@ -1,0 +1,84 @@
+Information about object: oRadiation
+
+Sprite: sRadiation
+Solid: false
+Visible: true
+Depth: 0
+Persistent: false
+Parent: <no parent>
+Mask: <same as sprite>
+
+Create Event:
+execute code:direction = random(360);
+speed = 7;
+vBounce = 10;
+
+
+ Step Event:
+execute code:if (vBounce = 0)
+  {instance_destroy()}
+
+
+End Step Event:
+execute code:if collision_line(xprevious,yprevious,x,y,oWallHor,1,1)
+  {
+    xPrev();
+    vspeed *= -1
+    vBounce -= 1;
+    sound_play(wBounce);
+  }
+
+if collision_line(xprevious,yprevious,x,y,oWallVer,1,1)
+  {
+    xPrev();
+    hspeed *= -1
+    vBounce -= 1;
+    sound_play(wBounce);
+  }
+
+if collision_line(xprevious,yprevious,x,y,oPac1,1,1)
+  {
+    with (oPac1) {instance_destroy()};
+    vBounce = 0;
+  }
+
+if collision_line(xprevious,yprevious,x,y,oPac2,1,1)
+  {
+    with (oPac2) {instance_destroy()};
+    vBounce = 0;
+  }
+
+if collision_line(xprevious,yprevious,x,y,oPac3,1,1)
+  {
+    with (oPac3) {instance_destroy()};
+    vBounce = 0;
+  }
+
+
+Collision Event with object oBullet1:
+execute code:if (other.vPowerUp = 2)
+  {
+    other.vBounce = 0;
+    instance_destroy();
+  }
+
+
+Collision Event with object oBullet2:
+execute code:if (other.vPowerUp = 2)
+  {
+    other.vBounce = 0;
+    instance_destroy();
+  }
+
+
+Collision Event with object oBullet3:
+execute code:if (other.vPowerUp = 2)
+  {
+    other.vBounce = 0;
+    instance_destroy();
+  }
+
+
+Other Event: Outside Room:
+execute code:move_wrap(1,1,1)
+

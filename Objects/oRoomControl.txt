@@ -1,0 +1,154 @@
+Information about object: oRoomControl
+
+Sprite: <no sprite>
+Solid: false
+Visible: true
+Depth: -1
+Persistent: false
+Parent: <no parent>
+Mask: <same as sprite>
+
+Create Event:
+execute code:globalvar vPacSpeed;
+vPacSpeed = 2;
+vWin = -1;
+//for testing
+//globalvar vNumPlayers;
+//vNumPlayers = 3
+
+//powerup
+if not(room = rOpen)
+  {
+    /*
+    if (vNumPlayers = 2)
+      {
+        with (oPac3)
+          {
+            instance_destroy();
+            exit;
+          }
+      }
+    */
+    alarm[1] = 15*room_speed;
+  }
+
+if (room = r13)
+  {
+    var xPlace, yPlace;
+    xPlace = 0;
+    yPlace = 0;
+    
+    do
+      {
+        if (xPlace <= room_width)
+          {
+            if position_empty(xPlace,yPlace)
+              {instance_create(xPlace,yPlace,oPowerUp2);}
+            xPlace += 32;
+          }
+        else
+          {
+            yPlace += 32;
+            xPlace = 0;
+          }
+      }
+    until (yPlace >= room_width)
+  }
+
+
+Alarm Event for alarm 0:
+execute code:if vWin
+  {
+    if instance_exists(oPac1)
+      {vScore1 += 1;}
+    if instance_exists(oPac2)
+      {vScore2 += 1;}
+    if instance_exists(oPac3)
+      {vScore3 += 1;}
+    if (room = room_last)
+      {room_goto(r1);}
+    else
+      {room_goto_next();}
+  }
+else
+  {room_restart();}
+
+
+Alarm Event for alarm 1:
+execute code:var vX, vY;
+do
+  {
+    vX = random(room_width);
+    vY = random(room_height);
+  }
+until (place_free(vX,vY))
+
+if (random(3) < 1)
+  {instance_create(vX,vY,oPowerUp1);}
+else
+  {instance_create(vX,vY,oPowerUp2);}
+
+alarm[1] = 15*room_speed;
+
+
+End Step Event:
+execute code:if (vAlive = 0) and not (room = rOpen)
+  {
+    if (vWin = -1)
+      {
+        alarm[0] = 30;
+        vWin = 0
+      }
+  }//draw
+if (vAlive = 1)
+  {
+    if (instance_number(oBullet1)+instance_number(oBullet2)+instance_number(oBullet3)+instance_number(oExplode)+instance_number(oRadiation) = 0)
+      {
+        if (vWin = -1)
+          {
+            alarm[0] = 30;
+            vWin = 1
+          }
+      }//win
+    else exit;    
+  }
+
+
+Draw Event:
+execute code:if (room = rOpen)
+  {
+    draw_sprite(sSign,0,200,16);
+    draw_sprite(sControls,0,64,96);
+    draw_sprite(sSign,1,200,288);
+    draw_sprite(sPlayer4,0,432,256+128);
+  }
+else
+  {
+    draw_set_color(c_white);
+    draw_rectangle(0,0,64,112,0);
+    
+    draw_set_font(fScore);
+    
+    draw_set_color(c_red);
+    draw_text(16,16,string(vScore1));
+    
+    draw_set_color(c_green);
+    draw_text(16,16+32,string(vScore2));
+    
+    if (vNumPlayers = 3)
+      {
+        draw_set_color(c_blue);
+        draw_text(16,16+32*2,string(vScore3));
+      }
+  }
+
+
+Key Release Event for <Escape> Key:
+execute code:switch (show_message_ext("Game paused.","Continue","Restart","Quit"))
+  {
+    case 0: exit; break;
+    case 1: exit; break;
+    case 2: game_restart(); break;
+    case 3: game_end(); break;
+  }
+

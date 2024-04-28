@@ -1,0 +1,39 @@
+Information about object: oPowerUp2
+
+Sprite: sPowerUp2
+Solid: false
+Visible: true
+Depth: 0
+Persistent: false
+Parent: <no parent>
+Mask: <same as sprite>
+
+Collision Event with object oPac1:
+execute code:if (other.vPowerUp < 2)
+  {
+    other.vPowerUp = 2;
+    instance_destroy();
+    sound_play(wPowerUp);    
+  }
+else exit;
+
+
+Collision Event with object oPac2:
+execute code:if (other.vPowerUp < 2)
+  {
+    other.vPowerUp = 2;
+    instance_destroy();
+    sound_play(wPowerUp);    
+  }
+else exit;
+
+
+Collision Event with object oPac3:
+execute code:if (other.vPowerUp < 2)
+  {
+    other.vPowerUp = 2;
+    instance_destroy();
+    sound_play(wPowerUp);    
+  }
+else exit;
+

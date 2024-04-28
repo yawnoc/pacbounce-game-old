@@ -1,0 +1,9 @@
+Information about object: oWallHor
+
+Sprite: sWallHor
+Solid: false
+Visible: true
+Depth: 0
+Persistent: false
+Parent: oWall
+Mask: <same as sprite>

@@ -1,0 +1,67 @@
+Information about object: oPac1
+
+Sprite: sPac1
+Solid: false
+Visible: true
+Depth: -100
+Persistent: false
+Parent: <no parent>
+Mask: <same as sprite>
+
+Create Event:
+execute code:vPowerUp = 0;
+direction = random(360);
+
+
+Destroy Event:
+execute code:instance_create(x,y,oDie);
+vAlive -= 1;
+
+
+End Step Event:
+execute code:image_angle = direction;
+
+if not(keyboard_check(vk_up) and keyboard_check(vk_down))
+  {speed = 0;}
+
+
+Collision Event with object oWall:
+execute code:xPrev();
+if (abs(hspeed) >= abs(vspeed) and not place_meeting(x+hspeed,y,oWall)) 
+  {
+    x += hspeed;
+    exit;
+  }
+if (abs(vspeed) >= abs(hspeed) and not place_meeting(x,y+vspeed,oWall)) 
+  {
+    y += vspeed;
+    exit;
+  }
+speed = 0;
+
+
+Keyboard Event for A-key Key:
+execute code:direction += 9;
+
+
+Keyboard Event for D-key Key:
+execute code:direction -= 9;
+
+
+Keyboard Event for S-key Key:
+execute code:speed = -vPacSpeed;
+
+
+Keyboard Event for W-key Key:
+execute code:speed = vPacSpeed;
+
+
+Other Event: Outside Room:
+execute code:move_wrap(1,1,1)
+
+
+Key Press Event for G-key Key:
+execute code:if (instance_number(oBullet1) < 5)
+  {instance_create(x,y,oBullet1);}
+else exit;
+

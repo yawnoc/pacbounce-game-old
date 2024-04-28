@@ -1,0 +1,17 @@
+Information about object: oDie
+
+Sprite: sDie
+Solid: false
+Visible: true
+Depth: 0
+Persistent: false
+Parent: <no parent>
+Mask: <same as sprite>
+
+Create Event:
+execute code:sound_play(wExplode);
+
+
+Other Event: Animation End:
+execute code:instance_destroy();
+

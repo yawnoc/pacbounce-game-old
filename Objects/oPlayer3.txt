@@ -1,0 +1,31 @@
+Information about object: oPlayer3
+
+Sprite: sPlayer3
+Solid: false
+Visible: true
+Depth: 0
+Persistent: false
+Parent: <no parent>
+Mask: <same as sprite>
+
+Create Event:
+execute code:image_speed = 0;
+image_index = 0;
+
+
+Mouse Event for Left Released:
+execute code:vNumPlayers = 3;
+globalvar vScore1, vScore2, vScore3;
+vScore1 = 0;
+vScore2 = 0;
+vScore3 = 0;
+room_goto_next();
+
+
+Mouse Event for Mouse Enter:
+execute code:image_index = 1;
+
+
+Mouse Event for Mouse Leave:
+execute code:image_index = 0;
+

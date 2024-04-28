@@ -1,0 +1,93 @@
+Information about object: oPac3
+
+Sprite: sPac3
+Solid: false
+Visible: true
+Depth: -100
+Persistent: false
+Parent: <no parent>
+Mask: <same as sprite>
+
+Create Event:
+execute code:globalvar vp1, vp2, vp3;
+vp1 = choose(0,1,2);
+vp2 = choose(vp1+1,vp1+2);
+vp3 =6-vp1-vp2;
+
+vp1 = vp1 mod 3 + 1;
+vp2 = vp2 mod 3 + 1;
+vp3 = vp3 mod 3 + 1;
+
+globalvar vpx1, vpy1, vpx2, vpy2, vpx3, vpy3;
+vpx1 = oPac1.xstart;
+vpy1 = oPac1.ystart;
+vpx2 = oPac2.xstart;
+vpy2 = oPac2.ystart;
+vpx3 = oPac3.xstart;
+vpy3 = oPac3.ystart;
+
+execute_string("oPac1.x = vpx" + string(vp1));
+execute_string("oPac1.y = vpy" + string(vp1));
+execute_string("oPac2.x = vpx" + string(vp2));
+execute_string("oPac2.y = vpy" + string(vp2));
+execute_string("oPac3.x = vpx" + string(vp3));
+execute_string("oPac3.y = vpy" + string(vp3));
+
+if (vNumPlayers = 2)
+  {
+    instance_destroy();
+    exit;
+  }
+vPowerUp = 0;
+direction = random(360);
+
+
+Destroy Event:
+execute code:if (vNumPlayers = 3)
+  {
+    instance_create(x,y,oDie);
+    vAlive -= 1;
+  }
+
+
+End Step Event:
+execute code:image_angle = direction;
+
+if not(keyboard_check(vk_up) and keyboard_check(vk_down))
+  {speed = 0;}
+
+
+Collision Event with object oWall:
+execute code:xPrev();
+if (abs(hspeed) >= abs(vspeed) and not place_meeting(x+hspeed,y,oWall)) 
+  {x += hspeed;/*exit;*/}
+if (abs(vspeed) >= abs(hspeed) and not place_meeting(x,y+vspeed,oWall)) 
+  {y += vspeed;/*exit;*/}
+speed = 0;
+
+
+Keyboard Event for <Left> Key:
+execute code:direction += 9;
+
+
+Keyboard Event for <Up> Key:
+execute code:speed = vPacSpeed;
+
+
+Keyboard Event for <Right> Key:
+execute code:direction -= 9;
+
+
+Keyboard Event for <Down> Key:
+execute code:speed = -vPacSpeed;
+
+
+Other Event: Outside Room:
+execute code:move_wrap(1,1,1)
+
+
+Key Press Event for Keypad + Key:
+execute code:if (instance_number(oBullet3) < 5)
+  {instance_create(x,y,oBullet3);}
+else exit;
+

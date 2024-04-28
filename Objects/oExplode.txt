@@ -1,0 +1,29 @@
+Information about object: oExplode
+
+Sprite: sExplode
+Solid: false
+Visible: true
+Depth: 0
+Persistent: false
+Parent: <no parent>
+Mask: <same as sprite>
+
+Create Event:
+execute code:sound_play(wExplode);
+
+
+Collision Event with object oPac1:
+execute code:with (other) {instance_destroy()}
+
+
+Collision Event with object oPac2:
+execute code:with (other) {instance_destroy()}
+
+
+Collision Event with object oPac3:
+execute code:with (other) {instance_destroy()}
+
+
+Other Event: Animation End:
+execute code:instance_destroy()
+

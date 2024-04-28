@@ -1,0 +1,102 @@
+Information about object: oBullet1
+
+Sprite: sBullet1
+Solid: false
+Visible: true
+Depth: 0
+Persistent: false
+Parent: <no parent>
+Mask: <same as sprite>
+
+Create Event:
+execute code:vPowerUp = oPac1.vPowerUp;
+oPac1.vPowerUp = 0;
+direction = oPac1.direction;
+speed = 4 - vPowerUp/2;
+vBounce = 10;
+image_index = vPowerUp;
+image_speed = 0;
+vKillPac = 0;
+vTime = 0;
+sound_play(wSpit);
+
+
+ Step Event:
+execute code:if (vBounce = 0)
+  {
+    switch vPowerUp
+      {
+        case 0: if (vKillPac > 0) {execute_string('with (oPac'+string(vKillPac)+') {instance_destroy()}');} break;
+        case 1: instance_create(x,y,oExplode); break;
+        case 2: repeat (20) {instance_create(x,y,oRadiation)}; instance_create(x,y,oExplode); break;
+      }
+    instance_destroy();
+  }
+
+vTime += 1;
+if (vTime = 20*room_speed)
+  {vBounce = 0;}
+
+if (abs(x-room_width/2)>room_width/2)
+  {x = abs(room_width - x - 2);}
+
+/*
+if ((abs(x-room_width/2)>room_width/2) or (abs(y-room_height/2)>room_height/2)) //outside room
+  {move_wrap(1,1,1);}
+*/
+
+
+End Step Event:
+execute code:image_angle = direction;
+
+//if collision_line(x-lengthdir_x(1,direction),y-lengthdir_y(1,direction),x,y,oWallHor,1,1)
+if xCollide(oWallHor)
+  {
+    xPrev();
+    vspeed *= -1
+    vBounce -= 1;
+    sound_play(wBounce);
+  }
+
+//if collision_line(xprevious,yprevious,x,y,oWallVer,1,1)
+if xCollide(oWallVer)
+  {
+    xPrev();
+    hspeed *= -1
+    vBounce -= 1;
+    sound_play(wBounce);
+  }
+
+//if collision_line(xprevious,yprevious,x,y,oPac1,1,1)
+if xCollide(oPac1)
+  {
+    if (vBounce = 10)
+      {exit;}
+    else
+      {
+        if (vPowerUp = 0)
+          {vKillPac = 1;}
+        vBounce = 0;
+      }
+  }
+
+//if collision_line(xprevious,yprevious,x,y,oPac2,1,1)
+if xCollide(oPac2)
+  {
+    if (vPowerUp = 0)
+      {vKillPac = 2;}
+    vBounce = 0;
+  }
+
+//if collision_line(xprevious,yprevious,x,y,oPac3,1,1)
+if xCollide(oPac3)
+  {
+    if (vPowerUp = 0)
+      {vKillPac = 3;}
+    vBounce = 0;
+  }
+
+
+Other Event: Outside Room:
+execute code:move_wrap(1,1,0);
+
