@@ -1,0 +1,26 @@
+Information about room: rOpen
+
+
+## objects
+
+See rOpen.png
+
+
+## settings
+
+Name: rOpen
+Caption for the room: Room 0
+Width: 640
+Height: 480
+Speed: 30
+Persistent: false
+Creation code:
+
+globalvar vNumPlayers, vAlive;
+vAlive = -1;
+sound_loop(wMusic);
+
+
+## backgrounds
+
+bFlag (default tiling)

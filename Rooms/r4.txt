@@ -1,0 +1,25 @@
+Information about room: r4
+
+
+## objects
+
+See r4.png
+
+
+## settings
+
+Name: r4
+Caption for the room: Room 4
+Width: 640
+Height: 480
+Speed: 30
+Persistent: false
+Creation code:
+
+vAlive = vNumPlayers;
+
+
+## backgrounds
+
+Draw background color: true
+Color: #000000 (RGB: 0, 0, 0)

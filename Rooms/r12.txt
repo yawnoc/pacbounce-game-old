@@ -1,0 +1,25 @@
+Information about room: r12
+
+
+## objects
+
+See r12.png
+
+
+## settings
+
+Name: r12
+Caption for the room: Room 12
+Width: 640
+Height: 480
+Speed: 30
+Persistent: false
+Creation code:
+
+vAlive = vNumPlayers;
+
+
+## backgrounds
+
+Draw background color: true
+Color: #000000 (RGB: 0, 0, 0)
